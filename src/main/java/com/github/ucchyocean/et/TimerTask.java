@@ -609,13 +609,12 @@ public class TimerTask extends BukkitRunnable {
 
         String name = configData.getPlaySoundCountdown();
         Sound sound;
-        if ( (name) ) {
+        if ( isValidSoundName(name) ) {
             sound = Sound.valueOf(name);
         } else {
             sound = Sound.BLOCK_NOTE_BLOCK_BIT;
         }
-
-        for ( Player player : getRefreshTargets() ) {
+          for ( Player player : getRefreshTargets() ) {
             player.playSound(player.getEyeLocation(), sound, 1.0F, 1.0F);
         }
     }
