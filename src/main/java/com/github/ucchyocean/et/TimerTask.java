@@ -609,7 +609,7 @@ public class TimerTask extends BukkitRunnable {
 
         String name = configData.getPlaySoundCountdown();
         Sound sound;
-        if ( isValidSoundName(name) ) {
+        if ( (name) ) {
             sound = Sound.valueOf(name);
         } else {
             sound = Sound.BLOCK_NOTE_BLOCK_BIT;
@@ -643,15 +643,14 @@ public class TimerTask extends BukkitRunnable {
      * @param name サウンド名
      * @return Soundクラスに含まれているかどうか
      */
-    private boolean isValidSoundName(String name) {
-
-        for ( Sound s : Sound.values() ) {
-            if ( s.name().equals(name) ) {
-                return true;
-            }
-        }
+    private boolean isValidSoundName(String soundName) {
+    try {
+        Sound.valueOf(soundName);
+        return true;
+    } catch (IllegalArgumentException e) {
         return false;
     }
+}
 
     /**
      * タイマーのスケジュールを行う
